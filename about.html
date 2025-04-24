@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avandre - À propos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border-b border-gray-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-indigo-400">AVANDRE</span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Accueil</a>
+                    <a href="collections.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Collection</a>
+                    <a href="nouveautes.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Nouveautés</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">À propos</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+                
+                <!-- Icons -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white relative">
+                        <i class="fas fa-shopping-bag text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                </div>
+
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile - Ajout de la classe 'hidden' initiale -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Accueil</a>
+                <a href="collections.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Collection</a>
+                <a href="nouveautes.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Nouveautés</a>
+                <a href="about.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">À propos</a>
+                <a href="contact.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Contact</a>
+                <div class="pt-4 pb-3 border-t border-gray-800 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white relative">
+                        <i class="fas fa-shopping-bag text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-32 pb-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-white text-center mb-4">À Propos d'Avandre</h1>
+            <p class="text-gray-400 text-center mb-12">Notre histoire, notre passion, notre engagement</p>
+        </div>
+    </div>
+
+    <!-- Notre Histoire -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1605731414532-6b26976cc153" alt="Atelier Avandre" class="w-full rounded-xl shadow-2xl">
+                </div>
+                
+                <div>
+                    <span class="text-indigo-400 font-semibold">NOTRE HISTOIRE</span>
+                    <h2 class="text-4xl font-bold mt-2 mb-6">L'Artisanat du Luxe</h2>
+                    <p class="text-gray-400 mb-4">Fondée en 2010, Avandre incarne l'alliance parfaite entre tradition artisanale et design contemporain. Chaque sac est conçu dans notre atelier parisien par des artisans passionnés.</p>
+                    <p class="text-gray-400 mb-6">Nous sélectionnons uniquement les cuirs les plus nobles et travaillons avec des fournisseurs engagés dans une démarche éco-responsable. Nos créations sont conçues pour durer et devenir des pièces intemporelles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Valeurs</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <div class="bg-indigo-600 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Durabilité</h3>
+                    <p class="text-gray-400">Nous nous engageons à utiliser des matériaux durables et à minimiser notre impact environnemental.</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <div class="bg-indigo-600 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-hands-helping text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Artisanat</h3>
+                    <p class="text-gray-400">Chaque pièce est fabriquée à la main par nos artisans qualifiés avec passion et précision.</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <div class="bg-indigo-600 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-medal text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Qualité</h3>
+                    <p class="text-gray-400">Nous sélectionnons les meilleurs matériaux et garantissons la qualité de chaque création.</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-xl">
+                    <div class="bg-indigo-600 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Passion</h3>
+                    <p class="text-gray-400">Notre amour pour le design et l'artisanat se reflète dans chaque détail de nos créations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Équipe -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Notre Équipe</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Directrice Créative" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Sophie Martin</h3>
+                        <p class="text-indigo-400 mb-2">Directrice Créative</p>
+                        <p class="text-gray-400">Passionnée par le design et l'artisanat, Sophie apporte sa vision unique à chaque collection.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a" alt="Directeur de Production" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Thomas Dubois</h3>
+                        <p class="text-indigo-400 mb-2">Directeur de Production</p>
+                        <p class="text-gray-400">Expert en cuir et en techniques artisanales, Thomas supervise chaque étape de la production.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956" alt="Responsable Design" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Emma Laurent</h3>
+                        <p class="text-indigo-400 mb-2">Responsable Design</p>
+                        <p class="text-gray-400">Avec son œil pour les détails, Emma crée des designs qui allient fonctionnalité et élégance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">AVANDRE</h3>
+                    <p class="text-gray-400 mb-4">L'excellence dans la qualité et la durabilité. Des sacs conçus pour ceux qui recherchent l'élégance intemporelle.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6">Boutiques</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Atakpamé - non loin du Lycée d'Agbonou</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sokode - Bar relais et deriere URCLEC</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Kara - à côté de All School</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6">Service Client</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contactez-nous</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Livraison & Retours</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Guide des tailles</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6">Informations</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Carrières</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Développement durable</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Presse</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions générales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Avandre. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

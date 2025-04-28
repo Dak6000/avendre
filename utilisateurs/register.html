@@ -193,37 +193,9 @@
                 });
 
                 if (registerResponse.ok) {
-                    // Si l'inscription est réussie, on connecte automatiquement l'utilisateur
-                    const loginData = {
-                        email: formData.email,
-                        password: formData.password
-                    };
-
-                    const loginResponse = await fetch('http://localhost:3000/api/auth/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(loginData)
-                    });
-
-                    if (loginResponse.ok) {
-                        const data = await loginResponse.json();
-
-                        // Stockage des informations de l'utilisateur
-                        localStorage.setItem('token', data.token);
-                        localStorage.setItem('user', JSON.stringify(data.user));
-
-                        // Redirection en fonction du type d'utilisateur
-                        if (data.user.is_admin) {
-                            window.location.href = '../admin/dashboard.html';
-                        } else {
-                            window.location.href = '../index.html';
-                        }
-                    } else {
-                        alert('Inscription réussie mais erreur lors de la connexion automatique');
-                        window.location.href = 'login.html';
-                    }
+                    // Inscription réussie - redirection vers la page de connexion
+                    alert('Inscription réussie ! Veuillez vous connecter.');
+                    window.location.href = 'login.html';
                 } else {
                     const data = await registerResponse.json();
                     alert(data.message || 'Une erreur est survenue lors de l\'inscription');

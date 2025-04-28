@@ -213,7 +213,7 @@
                 }
 
                 // Requête pour les données fraîches
-                const response = await fetch('http://localhost:3000/api/user/profile', {
+                const response = await fetch('http://localhost:3000/api/auth/me', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -260,10 +260,15 @@
                 };
 
                 try {
-                    const response = await fetch('http://localhost:3000/api/user/profile', {
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                        throw new Error('Non authentifié');
+                    }
+
+                    const response = await fetch('http://localhost:3000/api/auth/edit-profile', {
                         method: 'PUT',
                         headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Authorization': `Bearer ${token}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(formData)

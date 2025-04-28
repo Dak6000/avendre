@@ -152,6 +152,12 @@
                         </div>
                     </div>
 
+                    <!-- Stock -->
+                    <div>
+                        <label for="stock" class="block text-sm font-medium text-gray-300 mb-1">Stock</label>
+                        <input type="number" id="stock" name="stock" required min="0" class="w-full px-4 py-2 rounded-md bg-gray-700 border border-gray-600 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                    </div>
+
                     <!-- Catégorie et Badge -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -252,69 +258,77 @@
                 authLinks.innerHTML = authLinksHtml;
                 mobileAuthLinks.innerHTML = authLinksHtml;
 
-                // Gestion de la déconnexion dans la navigation
+                // Gestion de la déconnexion
                 document.getElementById('navLogoutButton').addEventListener('click', () => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
                     window.location.href = '../index.html';
                 });
 
-                // Gestion de l'aperçu de l'image
-                const imageInput = document.getElementById('image');
-                const imagePreview = document.getElementById('image-preview');
-                const imagePreviewContainer = document.getElementById('image-preview-container');
-                const imageName = document.getElementById('image-name');
+                // Gestion de l'affichage des noms de fichiers
+                document.getElementById('image').addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    const fileName = file ? file.name : 'Aucun fichier sélectionné';
+                    document.getElementById('image-name').textContent = fileName;
 
-                imageInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
+                    // Afficher l'aperçu de l'image
+                    if (file) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
-                            imagePreview.src = e.target.result;
-                            imagePreviewContainer.classList.remove('hidden');
+                            document.getElementById('image-preview').src = e.target.result;
+                            document.getElementById('image-preview-container').classList.remove('hidden');
                         }
-                        reader.readAsDataURL(this.files[0]);
-                        imageName.textContent = this.files[0].name;
+                        reader.readAsDataURL(file);
                     }
                 });
 
-                // Gestion du nom de la vidéo
-                const videoInput = document.getElementById('video');
-                const videoName = document.getElementById('video-name');
-
-                videoInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                        videoName.textContent = this.files[0].name;
-                    }
+                document.getElementById('video').addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    const fileName = file ? file.name : 'Aucun fichier sélectionné';
+                    document.getElementById('video-name').textContent = fileName;
                 });
 
                 // Gestion de la soumission du formulaire
                 document.getElementById('addProductForm').addEventListener('submit', async(e) => {
                     e.preventDefault();
 
-                    const formData = new FormData();
-                    formData.append('name', document.getElementById('name').value);
-                    formData.append('description', document.getElementById('description').value);
-                    formData.append('price', document.getElementById('price').value);
-                    formData.append('category', document.getElementById('category').value);
-                    formData.append('badge', document.getElementById('badge').value);
-
-                    const originalPrice = document.getElementById('original_price').value;
-                    if (originalPrice) {
-                        formData.append('original_price', originalPrice);
-                    }
-
-                    // Ajout de l'image
-                    if (imageInput.files[0]) {
-                        formData.append('image', imageInput.files[0]);
-                    }
-
-                    // Ajout de la vidéo
-                    if (videoInput.files[0]) {
-                        formData.append('video', videoInput.files[0]);
-                    }
-
                     try {
-                        const response = await fetch('http://localhost:3000/api/admin/products', {
+                        const formData = new FormData();
+                        formData.append('name', document.getElementById('name').value);
+                        formData.append('description', document.getElementById('description').value);
+                        formData.append('price', document.getElementById('price').value);
+                        formData.append('category', document.getElementById('category').value);
+                        formData.append('stock', document.getElementById('stock').value);
+
+                        const originalPrice = document.getElementById('original_price').value;
+                        if (originalPrice) {
+                            formData.append('original_price', originalPrice);
+                        }
+
+                        const badge = document.getElementById('badge').value;
+                        if (badge) {
+                            formData.append('badge', badge);
+                        }
+
+                        const imageFile = document.getElementById('image').files[0];
+                        if (imageFile) {
+                            formData.append('image', imageFile);
+                        }
+
+                        const videoFile = document.getElementById('video').files[0];
+                        if (videoFile) {
+                            formData.append('video', videoFile);
+                        }
+
+                        // Vérification du token
+                        const token = localStorage.getItem('token');
+                        if (!token) {
+                            alert('Vous devez être connecté pour ajouter un produit');
+                            window.location.href = '../utilisateurs/login.html';
+                            return;
+                        }
+
+                        const response = await fetch('http://localhost:3000/api/products', {
                             method: 'POST',
                             headers: {
                                 'Authorization': `Bearer ${token}`
@@ -322,42 +336,24 @@
                             body: formData
                         });
 
+                        const data = await response.json();
+
                         if (response.ok) {
-                            // Afficher un message de succès
-                            const successDiv = document.createElement('div');
-                            successDiv.className = 'bg-green-900 text-white p-4 rounded-lg mb-4';
-                            successDiv.textContent = 'Produit ajouté avec succès !';
-                            document.querySelector('main').insertBefore(successDiv, document.querySelector('.text-center'));
-
-                            // Réinitialiser le formulaire
-                            document.getElementById('addProductForm').reset();
-                            imagePreviewContainer.classList.add('hidden');
-                            imageName.textContent = 'Aucun fichier sélectionné';
-                            videoName.textContent = 'Aucun fichier sélectionné';
-
-                            // Redirection après 2 secondes
-                            setTimeout(() => {
-                                window.location.href = 'dashboard.html';
-                            }, 2000);
+                            alert('Produit ajouté avec succès !');
+                            window.location.href = 'dashboard.html';
                         } else {
-                            const data = await response.json();
-                            throw new Error(data.message || 'Une erreur est survenue lors de l\'ajout du produit');
+                            console.error('Erreur serveur:', data);
+                            alert(data.message || 'Une erreur est survenue lors de l\'ajout du produit');
                         }
                     } catch (error) {
-                        console.error('Erreur:', error);
-                        const errorDiv = document.createElement('div');
-                        errorDiv.className = 'bg-red-900 text-white p-4 rounded-lg mb-4';
-                        errorDiv.textContent = error.message || 'Une erreur est survenue lors de l\'ajout du produit';
-                        document.querySelector('main').insertBefore(errorDiv, document.querySelector('.text-center'));
+                        console.error('Erreur détaillée:', error);
+                        alert('Erreur de communication avec le serveur. Veuillez vérifier que le serveur est en cours d\'exécution et que vous êtes bien connecté.');
                     }
                 });
 
             } catch (error) {
                 console.error('Erreur:', error);
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'bg-red-900 text-white p-4 rounded-lg mb-4';
-                errorDiv.textContent = 'Erreur lors du chargement de la page. Veuillez réessayer plus tard.';
-                document.querySelector('main').insertBefore(errorDiv, document.querySelector('.text-center'));
+                window.location.href = '../index.html';
             }
         });
     </script>

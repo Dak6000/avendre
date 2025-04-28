@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un produit - Avandre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border-b border-gray-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="../index.html" class="text-2xl font-bold text-indigo-400">AVANDRE</a>
+                </div>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Accueil</a>
+                    <a href="../collections.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Collection</a>
+                    <a href="../nouveautes.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Nouveautés</a>
+                    <a href="../about.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">À propos</a>
+                    <a href="../contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+
+                <!-- Icons -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <div id="auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                </div>
+
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="../index.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Accueil</a>
+                <a href="../collections.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Collection</a>
+                <a href="../nouveautes.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Nouveautés</a>
+                <a href="../about.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">À propos</a>
+                <a href="../contact.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Contact</a>
+                <div class="pt-4 pb-3 border-t border-gray-800 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <div id="mobile-auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Section -->
+    <div class="pt-32 pb-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-4xl font-bold text-white">Supprimer un produit</h1>
+                <a href="dashboard.html" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour au tableau de bord</span>
+                </a>
+            </div>
+            <p class="text-gray-400 text-center mb-12">Confirmez la suppression du produit</p>
+        </div>
+    </div>
+
+    <!-- Delete Product Form -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="bg-gray-800 rounded-lg p-8">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Colonne de gauche -->
+                <div class="space-y-6">
+                    <!-- Informations du produit -->
+                    <div>
+                        <h2 class="text-xl font-semibold text-white mb-4">Informations du produit</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300">Nom du produit</label>
+                                <p id="product-name" class="mt-1 text-white"></p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300">Description</label>
+                                <p id="product-description" class="mt-1 text-white"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300">Prix (FCFA)</label>
+                                    <p id="product-price" class="mt-1 text-white"></p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300">Stock</label>
+                                    <p id="product-stock" class="mt-1 text-white"></p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300">Catégorie</label>
+                                    <p id="product-category" class="mt-1 text-white"></p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300">Badge</label>
+                                    <p id="product-badge" class="mt-1 text-white"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne de droite -->
+                <div class="space-y-6">
+                    <!-- Image du produit -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Image du produit</label>
+                        <div class="border border-gray-600 rounded-md p-2 bg-gray-700">
+                            <img id="product-image" class="max-h-48 mx-auto" src="#" alt="Image du produit">
+                        </div>
+                    </div>
+
+                    <!-- Vidéo du produit -->
+                    <div id="product-video-container">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Vidéo du produit</label>
+                        <div class="border border-gray-600 rounded-md p-2 bg-gray-700">
+                            <video id="product-video" class="max-h-48 mx-auto" controls>
+                                <source src="#" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Message -->
+            <div class="mt-8 p-4 bg-red-900/50 border border-red-700 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-red-400 mr-3"></i>
+                    <p class="text-red-200">
+                        Attention : Cette action est irréversible. Une fois le produit supprimé, il ne pourra pas être récupéré.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8 flex justify-end space-x-4">
+                <a href="dashboard.html" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-times mr-2"></i> Annuler
+                </a>
+                <button id="deleteButton" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-trash mr-2"></i>
+                    Confirmer la suppression
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="../js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async() => {
+            try {
+                const token = localStorage.getItem('token');
+                const user = JSON.parse(localStorage.getItem('user'));
+
+                // Vérification si l'utilisateur est admin
+                if (!token || !user || !user.is_admin) {
+                    window.location.href = '../index.html';
+                    return;
+                }
+
+                // Récupération de l'ID du produit depuis l'URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
+
+                if (!productId) {
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                // Récupération des données du produit
+                const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Produit non trouvé');
+                }
+
+                const product = await response.json();
+
+                // Remplissage des informations du produit
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('product-price').textContent = product.price + ' FCFA';
+                document.getElementById('product-stock').textContent = product.stock;
+                document.getElementById('product-category').textContent = product.category;
+                document.getElementById('product-badge').textContent = product.badge || 'Aucun badge';
+
+                // Affichage de l'image
+                if (product.image_path) {
+                    document.getElementById('product-image').src = product.image_path;
+                }
+
+                // Affichage de la vidéo
+                if (product.video_path) {
+                    document.getElementById('product-video').src = product.video_path;
+                } else {
+                    document.getElementById('product-video-container').classList.add('hidden');
+                }
+
+                // Gestion de la suppression
+                document.getElementById('deleteButton').addEventListener('click', async() => {
+                    if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ? Cette action est irréversible.')) {
+                        try {
+                            const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            });
+
+                            if (response.ok) {
+                                alert('Produit supprimé avec succès !');
+                                window.location.href = 'dashboard.html';
+                            } else {
+                                const data = await response.json();
+                                console.error('Erreur serveur:', data);
+                                alert(data.message || 'Une erreur est survenue lors de la suppression du produit');
+                            }
+                        } catch (error) {
+                            console.error('Erreur détaillée:', error);
+                            alert('Erreur de communication avec le serveur. Veuillez vérifier que le serveur est en cours d\'exécution et que vous êtes bien connecté.');
+                        }
+                    }
+                });
+
+            } catch (error) {
+                console.error('Erreur:', error);
+                window.location.href = '../index.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

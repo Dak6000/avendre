@@ -3,22 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database');
-
-// Middleware pour vérifier le token
-const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (!token) {
-        return res.status(403).json({ message: 'Token non fourni' });
-    }
-
-    jwt.verify(token, 'votre_secret_jwt', (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Token invalide' });
-        }
-        req.user = decoded;
-        next();
-    });
-};
+const auth = require('../middleware/auth');
 
 // Route d'inscription
 router.post('/register', async(req, res) => {
@@ -101,7 +86,7 @@ router.post('/login', (req, res) => {
 });
 
 // Route pour obtenir les informations du profil
-router.get('/me', verifyToken, (req, res) => {
+router.get('/me', auth, (req, res) => {
     db.get('SELECT id, email, first_name, last_name, phone, address, city, country, is_admin FROM users WHERE id = ?', [req.user.id], (err, user) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur serveur' });
@@ -114,20 +99,21 @@ router.get('/me', verifyToken, (req, res) => {
 });
 
 // Route pour mettre à jour le profil
-router.put('/profile', verifyToken, async(req, res) => {
-    const { first_name, last_name, email, phone, address, city, country } = req.body;
+router.put('/edit-profile', auth, async(req, res) => {
+    try {
+        const { first_name, last_name, email, phone, address, city, country } = req.body;
 
-    // Vérification si l'email est déjà utilisé par un autre utilisateur
-    db.get('SELECT id FROM users WHERE email = ? AND id != ?', [email, req.user.id], async(err, row) => {
-        if (err) {
-            return res.status(500).json({ message: 'Erreur serveur' });
-        }
-        if (row) {
-            return res.status(400).json({ message: 'Cet email est déjà utilisé' });
-        }
+        // Vérification si l'email est déjà utilisé par un autre utilisateur
+        db.get('SELECT id FROM users WHERE email = ? AND id != ?', [email, req.user.id], async(err, row) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erreur serveur' });
+            }
+            if (row) {
+                return res.status(400).json({ message: 'Cet email est déjà utilisé' });
+            }
 
-        // Mise à jour du profil
-        db.run(`UPDATE users SET 
+            // Mise à jour du profil
+            db.run(`UPDATE users SET 
                 first_name = ?, 
                 last_name = ?, 
                 email = ?, 
@@ -136,17 +122,20 @@ router.put('/profile', verifyToken, async(req, res) => {
                 city = ?, 
                 country = ? 
                 WHERE id = ?`, [first_name, last_name, email, phone, address, city, country, req.user.id],
-            function(err) {
-                if (err) {
-                    return res.status(500).json({ message: 'Erreur lors de la mise à jour du profil' });
-                }
-                res.json({ message: 'Profil mis à jour avec succès' });
-            });
-    });
+                function(err) {
+                    if (err) {
+                        return res.status(500).json({ message: 'Erreur lors de la mise à jour du profil' });
+                    }
+                    res.json({ message: 'Profil mis à jour avec succès' });
+                });
+        });
+    } catch (error) {
+        return res.status(500).json({ message: 'Erreur serveur' });
+    }
 });
 
 // Route pour changer le mot de passe
-router.put('/password', verifyToken, async(req, res) => {
+router.put('/password', auth, async(req, res) => {
     const { current_password, new_password } = req.body;
 
     // Récupération de l'utilisateur

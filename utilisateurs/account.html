@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - Avandre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .min-h-screen-nav {
+            min-height: calc(100vh - 5rem);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border-b border-gray-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="../index.html" class="text-2xl font-bold text-indigo-400">AVANDRE</a>
+                </div>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Accueil</a>
+                    <a href="../collections.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Collection</a>
+                    <a href="../nouveautes.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Nouveautés</a>
+                    <a href="../about.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">À propos</a>
+                    <a href="../contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+
+                <!-- Icons -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <div id="auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                </div>
+
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="../index.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Accueil</a>
+                <a href="../collections.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Collection</a>
+                <a href="../nouveautes.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Nouveautés</a>
+                <a href="../about.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">À propos</a>
+                <a href="../contact.html" class="block text-gray-300 hover:text-white px-3 py-2 text-base font-medium">Contact</a>
+                <div class="pt-4 pb-3 border-t border-gray-800 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-search text-lg"></i>
+                    </a>
+                    <div id="mobile-auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen-nav pt-20 pb-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-white mb-2">Mon Compte</h1>
+                <p class="text-gray-400">Bienvenue dans votre espace personnel</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Informations personnelles -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">Informations personnelles</h2>
+                        <a href="edit-profile.html" class="text-indigo-400 hover:text-indigo-300">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-400">Prénom: <span id="user-firstname" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Nom: <span id="user-lastname" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Email: <span id="user-email" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Téléphone: <span id="user-phone" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Adresse: <span id="user-address" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Ville: <span id="user-city" class="text-white font-bold"></span></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400">Pays: <span id="user-country" class="text-white font-bold"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commandes récentes -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-bold text-white mb-6">Commandes récentes</h2>
+                    <div class="text-center py-8">
+                        <i class="fas fa-shopping-bag text-4xl text-gray-600 mb-4"></i>
+                        <p class="text-gray-400">Aucune commande récente</p>
+                    </div>
+                </div>
+
+                <!-- Actions rapides -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h2 class="text-xl font-bold text-white mb-6">Actions rapides</h2>
+                    <div class="space-y-4">
+                        <a href="edit-profile.html" class="flex items-center p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition duration-200">
+                            <i class="fas fa-user-edit text-indigo-400 mr-4"></i>
+                            <span class="text-white">Modifier mon profil</span>
+                        </a>
+                        <a href="change-password.html#password-section" class="flex items-center p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition duration-200">
+                            <i class="fas fa-key text-indigo-400 mr-4"></i>
+                            <span class="text-white">Changer mon mot de passe</span>
+                        </a>
+                        <button id="logoutButton" class="w-full flex items-center p-4 bg-gray-700 rounded-lg hover:bg-gray-600 transition duration-200">
+                            <i class="fas fa-sign-out-alt text-red-400 mr-4"></i>
+                            <span class="text-white">Se déconnecter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async() => {
+            try {
+                const token = localStorage.getItem('token');
+                const user = JSON.parse(localStorage.getItem('user'));
+
+                // Redirection si non authentifié
+                if (!token || !user) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Mise à jour des liens d'authentification
+                const authLinks = document.getElementById('auth-links');
+                const mobileAuthLinks = document.getElementById('mobile-auth-links');
+
+                const authLinksHtml = `
+                    <a href="account.html" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-user text-lg"></i>
+                    </a>
+                    <button id="navLogoutButton" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                    </button>
+                `;
+                authLinks.innerHTML = authLinksHtml;
+                mobileAuthLinks.innerHTML = authLinksHtml;
+
+                // Gestion de la déconnexion dans la navigation
+                document.getElementById('navLogoutButton').addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = '../index.html';
+                });
+
+                // Afficher les données stockées en attendant la requête
+                if (user) {
+                    document.getElementById('user-firstname').textContent = user.first_name;
+                    document.getElementById('user-lastname').textContent = user.last_name;
+                    document.getElementById('user-email').textContent = user.email;
+                    document.getElementById('user-phone').textContent = user.phone || 'Non renseigné';
+                    document.getElementById('user-address').textContent = user.address || 'Non renseignée';
+                    document.getElementById('user-city').textContent = user.city || 'Non renseignée';
+                    document.getElementById('user-country').textContent = user.country || 'Non renseigné';
+                }
+
+                // Requête pour les données fraîches
+                const response = await fetch('http://localhost:3000/api/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('Erreur serveur');
+
+                const userData = await response.json();
+
+                // Mise à jour de l'interface avec les données fraîches
+                document.getElementById('user-fullname').textContent = `${userData.first_name} ${userData.last_name}`;
+                document.getElementById('user-email').textContent = userData.email;
+                document.getElementById('user-phone').textContent = userData.phone || 'Non renseigné';
+                document.getElementById('user-address').textContent = userData.address || 'Non renseignée';
+                document.getElementById('user-city').textContent = userData.city || 'Non renseignée';
+                document.getElementById('user-country').textContent = userData.country || 'Non renseigné';
+
+                // Mise à jour du titre de la page
+                document.title = `${userData.first_name} ${userData.last_name} - Mon Compte - Avandre`;
+
+            } catch (error) {
+                console.error('Erreur:', error);
+                // Afficher un message d'erreur élégant
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'bg-red-900 text-white p-4 rounded-lg mb-4';
+                errorDiv.textContent = 'Erreur lors du chargement des informations. Veuillez réessayer plus tard.';
+                document.querySelector('main').insertBefore(errorDiv, document.querySelector('.text-center'));
+            }
+
+            // Gestion de la déconnexion
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

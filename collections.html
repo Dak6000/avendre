@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="bg-gray-900">
     <!-- Navbar -->
     <nav class="bg-gray-900 border-b border-gray-800 fixed w-full z-50">
@@ -15,9 +17,9 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-indigo-400">AVANDRE</span>
+                    <a href="index.html" class="text-2xl font-bold text-indigo-400">AVANDRE</a>
                 </div>
-                
+
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Accueil</a>
@@ -26,12 +28,18 @@
                     <a href="about.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">À propos</a>
                     <a href="contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
                 </div>
-                
+
                 <!-- Icons -->
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-3">
                     <a href="#" class="text-gray-400 hover:text-white">
                         <i class="fas fa-search text-lg"></i>
                     </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                    <div id="auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
                 </div>
 
                 <!-- Bouton menu mobile -->
@@ -104,5 +112,39 @@
     <script src="js/produits.js"></script>
     <script src="js/components.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            const authLinks = document.getElementById('auth-links');
+
+            if (token && user) {
+                // Utilisateur connecté
+                authLinks.innerHTML = `
+                    <a href="utilisateurs/account.html" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-user text-lg"></i>
+                    </a>
+                    <button id="logoutButton" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                    </button>
+                `;
+
+                // Gestion de la déconnexion
+                document.getElementById('logoutButton').addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.reload();
+                });
+            } else {
+                // Utilisateur non connecté
+                authLinks.innerHTML = `
+                    <a href="utilisateurs/login.html" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-sign-in-alt text-lg"></i>
+                    </a>
+                `;
+            }
+        });
+    </script>
 </body>
-</html> 
+
+</html>

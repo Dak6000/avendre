@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
         })();
     </script>
 </head>
+
 <body class="bg-gray-900">
     <!-- Navbar -->
     <nav class="bg-gray-900 border-b border-gray-800 fixed w-full z-50">
@@ -24,9 +26,9 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-indigo-400">AVANDRE</span>
+                    <a href="index.html" class="text-2xl font-bold text-indigo-400">AVANDRE</a>
                 </div>
-                
+
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Accueil</a>
@@ -35,12 +37,18 @@
                     <a href="about.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">À propos</a>
                     <a href="contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
                 </div>
-                
+
                 <!-- Icons -->
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-3">
                     <a href="#" class="text-gray-400 hover:text-white">
                         <i class="fas fa-search text-lg"></i>
                     </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </a>
+                    <div id="auth-links">
+                        <!-- Les liens seront ajoutés dynamiquement -->
+                    </div>
                 </div>
 
                 <!-- Bouton menu mobile -->
@@ -84,7 +92,7 @@
                 <!-- Contact Information -->
                 <div class="bg-gray-800 rounded-xl p-8">
                     <h2 class="text-2xl font-bold text-white mb-6">Informations de contact</h2>
-                    
+
                     <div class="space-y-6">
                         <div class="flex items-start">
                             <div class="bg-indigo-600 p-3 rounded-lg mr-4">
@@ -95,17 +103,17 @@
                                 <p class="text-gray-400">Atakpamé, à quelque mettre du Lycée d'Agbonou<br>Kara, kawiele juste à côté de All School</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="bg-indigo-600 p-3 rounded-lg mr-4">
                                 <i class="fas fa-phone text-white text-xl"></i>
                             </div>
                             <div>
                                 <h3 class="text-lg font-semibold text-white mb-1">Téléphone</h3>
-                                <p class="text-gray-400">+228 93 59 00 67  +228 93 59 00 73 / +228 91 62 59 24</p>
+                                <p class="text-gray-400">+228 93 59 00 67 +228 93 59 00 73 / +228 91 62 59 24</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="bg-indigo-600 p-3 rounded-lg mr-4">
                                 <i class="fas fa-envelope text-white text-xl"></i>
@@ -115,7 +123,7 @@
                                 <p class="text-gray-400">luxbagsavandre@gmail.com</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="bg-indigo-600 p-3 rounded-lg mr-4">
                                 <i class="fas fa-clock text-white text-xl"></i>
@@ -126,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-8">
                         <h3 class="text-lg font-semibold text-white mb-4">Suivez-nous</h3>
                         <div class="flex space-x-4">
@@ -145,11 +153,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Contact Form -->
                 <div class="bg-gray-800 rounded-xl p-8">
                     <h2 class="text-2xl font-bold text-white mb-6">Envoyez-nous un message</h2>
-                    
+
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -161,22 +169,22 @@
                                 <input type="text" id="lastname" name="lastname" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-indigo-500 focus:outline-none">
                             </div>
                         </div>
-                        
+
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-indigo-500 focus:outline-none">
                         </div>
-                        
+
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Sujet</label>
                             <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-indigo-500 focus:outline-none">
                         </div>
-                        
+
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
                             <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:border-indigo-500 focus:outline-none"></textarea>
                         </div>
-                        
+
                         <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
                             Envoyer le message
                         </button>
@@ -203,5 +211,39 @@
     <!-- Leaflet JS pour la carte -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            const authLinks = document.getElementById('auth-links');
+
+            if (token && user) {
+                // Utilisateur connecté
+                authLinks.innerHTML = `
+                    <a href="utilisateurs/account.html" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-user text-lg"></i>
+                    </a>
+                    <button id="logoutButton" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-sign-out-alt text-lg"></i>
+                    </button>
+                `;
+
+                // Gestion de la déconnexion
+                document.getElementById('logoutButton').addEventListener('click', () => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.reload();
+                });
+            } else {
+                // Utilisateur non connecté
+                authLinks.innerHTML = `
+                    <a href="utilisateurs/login.html" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-sign-in-alt text-lg"></i>
+                    </a>
+                `;
+            }
+        });
+    </script>
 </body>
-</html> 
+
+</html>
